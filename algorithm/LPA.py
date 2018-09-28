@@ -28,6 +28,11 @@ class LPA():
         for neighbor_index in self._G.neighbors(node_index):
             neighbor_label = self._G.node[neighbor_index]["label"]
             m[neighbor_label] += 1
+
+        if(not bool(m)):
+            #return label of the vertex itself if it's an isolated vertex
+            return [self._G.node[node_index]["label"]]
+
         max_v = max(m.itervalues())
         return [item[0] for item in m.items() if item[1] == max_v]
 
